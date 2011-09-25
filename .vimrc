@@ -58,6 +58,11 @@ autocmd FileChangedShell * echohl WarningMsg | echo "File changed shell." | echo
 " File types
 autocmd BufNewFile,BufRead *.boo setf boo
 
+" Tab completion
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
 if &diff
 	set number
 	set nowrap
@@ -76,6 +81,7 @@ set statusline+=\ %h	"help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 set statusline+=%y      "filetype
+set statusline+=%{fugitive#statusline()} " git branch
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
@@ -106,17 +112,42 @@ endfun
 " =============
 let mapleader = ","
 
+" Built-in commands
 nmap <silent> <Leader>n :set number!<CR>
 nmap <silent> <Leader>w :set wrap!<CR>
 nmap <silent> <Leader>/ :noh<CR>
 nmap <silent> <Leader><TAB> :e#<CR>
+
+" Function commands
 nmap <silent> <Leader>h :call Mosh_Flip_Ext()<CR>
 
-nmap <silent> <Leader>ut :call MakeGreen()<cr>
+" Plugin commands
+nmap <silent> <Leader>g :GundoToggle<CR>
+nmap <silent> <Leader>ut :call MakeGreen()<CR>
 nmap <silent> <Leader>lt <Plug>TaskList
+map <silent> <Leader>j :RopeGotoDefintion<CR>
+map <silent> <Leader>r :RopeRename<CR>
+
+let g:pep8_map='<Leader>8' " PEP8 python syntax plugin
+
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+nmap <silent> <Leader>f <Esc>:Ack!
 
 if &diff
 	nnoremap <C-[> :qa<CR>
 	nmap <F7> [c
 	nmap <F8> ]c
 endif
+
+" VIRTUALENV
+" =============
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+	project_base_dir = os.environ['VIRTUAL_ENV']
+	sys.path.insert(0, project_base_dir)
+	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+	execfile(activate_this, dict(__file__=activate_this))
+EOF
