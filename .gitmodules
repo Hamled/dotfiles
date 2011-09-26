@@ -55,3 +55,6 @@
 [submodule "bundle/colour-bandit"]
 	path = bundle/colour-bandit
 	url = https://github.com/vim-scripts/bandit.vim.git
+[submodule "bundle/vim-virtualenv"]
+	path = bundle/vim-virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv.git
