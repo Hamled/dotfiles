@@ -15,13 +15,15 @@ if [ -f "$HOME/.profile" ]; then
 	source "$HOME/.profile"
 fi
 
+# Now with pretty colors
+force_color_prompt=yes
+
 # include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then
 	source "$HOME/.bashrc"
 fi
 
 # If this is an xterm set the title to user@host:dir
-# Now with pretty colors
 case "$TERM" in
 xterm*|rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
