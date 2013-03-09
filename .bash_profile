@@ -31,9 +31,9 @@ xterm*|rxvt*)
 esac
 
 # Undo some aliases I don't use
-unalias ll
-unalias la
-unalias l
+unalias ll 2>/dev/null
+unalias la 2>/dev/null
+unalias l  2>/dev/null
 
 # I hate accidentally hanging my ssh session
 stty start undef
