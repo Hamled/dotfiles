@@ -1,0 +1,4 @@
+" Pull in settings from base .vimrc
+:so ~/.vim/.vimrc
+
+" Put any site-specific config here
