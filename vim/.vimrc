@@ -138,3 +138,6 @@ if &diff
 	nmap <F7> [c
 	nmap <F8> ]c
 endif
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
