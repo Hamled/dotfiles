@@ -19,11 +19,6 @@ fi
 # Now with pretty colors
 force_color_prompt=yes
 
-# include .bashrc if it exists
-if [ -f "$HOME/.bashrc" ]; then
-	source "$HOME/.bashrc"
-fi
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -70,3 +65,8 @@ function reload() {
     fi
   fi
 }
+
+# include .bashrc for local configuration if it exists
+if [ -f "$HOME/.bashrc" ]; then
+	source "$HOME/.bashrc"
+fi
