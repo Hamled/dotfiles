@@ -13,7 +13,3 @@ export P4PORT=1666
 
 # Lua interpreter initalization
 export LUA_INIT=@$HOME/.lua_profile
-
-# Homebrew rbenv overrides
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
