@@ -1,0 +1,20 @@
+# Homebrew rbenv overrides
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Coreutils Overrides
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+	if [ -r "$HOME/.dircolors" ]; then
+	    eval "`gdircolors $HOME/.dircolors`"
+	else
+        eval "`gdircolors -b`"
+	fi
+
+    alias ls='gls --color=auto'
+    alias dir='gls --color=auto --format=vertical'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
