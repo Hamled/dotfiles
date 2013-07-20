@@ -1,0 +1,15 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2645
+
+This is the colour scheme that I use for all editing tasks.  It is primarily designed for use with a dark background (as I find this easier on the eyes), but I'm gradually adding more support for light backgrounds as well.  It makes full use of the available colour palette, so looks better in gvim than in console vim (although I still like the console version).
+
+More details (and screenshots) at https://sites.google.com/site/abudden/contents/Vim-Scripts/bandit-colour-scheme
+
+Unusual Features
+
+The colour scheme has a few slightly unusual features as Vim colour schemes go:
+
+Support for a lot more highlighting groups than most colour schemes (including the result of the ctags-based highlighter: vimscript#2646, and Dr Chip's rainbow.vim).
+
+Requires Vim 7 or above (I got irritated by the syntax for colour schemes, so I made my own) If you install the associated syntax file, it is self colouring, so you can see the colour scheme clearly when viewing the source file (the 'ColourAssignment' text is highlighted appropriately: see the screenshots on the website).
+
+Semi-automatic generation of light background colour choices (see website)
