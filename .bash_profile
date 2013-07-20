@@ -5,14 +5,15 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 # run our shell-agnostic profile if it exists
 if [ -f "$HOME/.profile" ]; then
 	source "$HOME/.profile"
+fi
+
+# setup the PATH
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
 fi
 
 # Now with pretty colors
