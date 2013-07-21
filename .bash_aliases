@@ -16,3 +16,11 @@ alias :q='exit'
 # virtualenv aliases
 alias mkvirtualenv='mkvirtualenv --no-site-packages'
 alias workoff='deactivate && cd'
+
+# Vagrant
+alias vgup='vagrant up'
+alias vgssh='vagrant ssh'
+alias vgprov='vagrant provision'
+alias vgreload='vagrant reload'
+alias vgdown='vagrant halt'
+alias vgdest='vagrant destroy'
