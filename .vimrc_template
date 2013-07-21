@@ -1,14 +1,16 @@
 " Setup dotvim settings
 let g:dotvim_settings = {}
 let g:dotvim_settings.version = 1
+let g:dotvim_settings.plugin_groups_exclude = ['go']
 
 " Backwards compatibility
-if filereadable("~/.vim/.vimrc")
-    source  ~/.vim/.vimrc
+if filereadable(glob("~/.vim/.vimrc"))
+  source ~/.vim/.vimrc
 endif
 
-if filereadable("~/.vim/vimrc")
-    source  ~/.vim/vimrc
+if filereadable(glob("~/.vim/vimrc"))
+  source ~/.vim/vimrc
 endif
 
 " Put any site-specific config here
+autocmd FileType python nnoremap <Leader>8 :PyLint<CR>
