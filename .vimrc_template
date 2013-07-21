@@ -1,4 +1,14 @@
-" Pull in settings from base .vimrc
-:so ~/.vim/.vimrc
+" Setup dotvim settings
+let g:dotvim_settings = {}
+let g:dotvim_settings.version = 1
+
+" Backwards compatibility
+if filereadable("~/.vim/.vimrc")
+    source  ~/.vim/.vimrc
+endif
+
+if filereadable("~/.vim/vimrc")
+    source  ~/.vim/vimrc
+endif
 
 " Put any site-specific config here
