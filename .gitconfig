@@ -3,5 +3,7 @@
 	email = hamled@hamled.name
 [github]
 	user = Hamled
+[alias]
+	co = checkout
 [push]
 	default = simple
