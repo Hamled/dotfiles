@@ -10,6 +10,7 @@ alias xargs0='xargs -0'
 alias mainscreen='/usr/local/bin/tmux attach -d -t main'
 
 # vim compatibility
+alias vi='vim'
 alias :e='vim'
 alias :q='exit'
 
