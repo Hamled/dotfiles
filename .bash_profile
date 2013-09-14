@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # shell-agnostic profile
 if [ -f "$HOME/.profile" ]; then
     source "$HOME/.profile"
