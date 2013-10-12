@@ -40,7 +40,6 @@ set formatoptions=cql
 " Folding
 set foldmethod=indent
 set foldlevel=99
-autocmd FileType xml setlocal foldmethod=syntax
 
 set tags=tags;/
 
@@ -56,10 +55,17 @@ autocmd FileChangedRO * echohl WarningMsg | echo "File changed RO." | echohl Non
 autocmd FileChangedShell * echohl WarningMsg | echo "File changed shell." | echohl None
 
 " File types
+autocmd FileType xml setlocal foldmethod=syntax
 autocmd BufNewFile,BufRead *.boo setf boo
+"	Python
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType python map <silent> <Leader>j :RopeGotoDefintion<CR>
+autocmd FileType python map <silent> <Leader>r :RopeRename<CR>
+autocmd FileType python map <silent> <Leader>8 :call Flake8()<CR>
+autocmd BufWritePost *.py call Flake8()
 
 " Tab completion
-autocmd FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 
@@ -125,10 +131,6 @@ nmap <silent> <Leader>h :call Mosh_Flip_Ext()<CR>
 nmap <silent> <Leader>g :GundoToggle<CR>
 nmap <silent> <Leader>ut :call MakeGreen()<CR>
 nmap <silent> <Leader>lt <Plug>TaskList
-map <silent> <Leader>j :RopeGotoDefintion<CR>
-map <silent> <Leader>r :RopeRename<CR>
-
-let g:pep8_map='<Leader>8' " PEP8 python syntax plugin
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 nmap <silent> <Leader>f <Esc>:Ack!

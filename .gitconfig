@@ -1,7 +1,9 @@
+[core]
+	editor = vim -f
 [user]
 	name = Charles Ellis
 	email = hamled@hamled.name
 [github]
 	user = Hamled
-[push]
-	default = simple
+[alias]
+	co = checkout

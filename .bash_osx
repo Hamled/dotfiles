@@ -1,20 +1,65 @@
+#!/usr/bin/env bash
+
 # Homebrew rbenv overrides
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# Homebrew bash-completion
+if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
+
 # Coreutils Overrides
 # enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-	if [ -r "$HOME/.dircolors" ]; then
-	    eval "`gdircolors $HOME/.dircolors`"
-	else
-        eval "`gdircolors -b`"
-	fi
+if [[ "$TERM" != "dumb" ]]; then
+  if [[ -r "$HOME/.dircolors" ]]; then
+    eval "`gdircolors $HOME/.dircolors`"
+  else
+    eval "`gdircolors -b`"
+  fi
 
-    alias ls='gls --color=auto'
-    alias dir='gls --color=auto --format=vertical'
+  alias ls='gls --color=auto'
+  alias dir='gls --color=auto --format=vertical'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# Open a file on a remote vim server
+remote_mvim() {
+  local remote_option="$1" && shift
+
+  local options=()
+  local files=()
+  local cmd=''
+
+  # Parse the command line
+  # Once we hit our first file parameter everything
+  # after that is assumed to be files
+  while [[ -n $1 ]]; do
+    if [[ $1 = -* && ${#files[@]} -lt 1 ]]; then
+      options+=("$1")
+    elif [[ $1 = +* && ${#files[@]} -lt 1 ]]; then
+      # This could be a command OR the line start parameter
+      if [[ $1 = +*[!0-9]* ]]; then
+        cmd="$1"
+      else
+        options+=("$1")
+      fi
+    else
+      files+=("$1")
+    fi
+
+    shift
+  done
+
+  # Pass our command line to mvim in the right order
+  $(which mvim) "${options[@]}" "$remote_option" "$cmd" "${files[@]}"
+}
+
+alias mvim='remote_mvim --remote-silent'
+
+if [[ -n "$(which mvim)" ]]; then
+  alias vim='mvim'
 fi

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Why even bother???
 alias nano='nano -w'
@@ -10,9 +10,18 @@ alias xargs0='xargs -0'
 alias mainscreen='/usr/local/bin/tmux attach -d -t main'
 
 # vim compatibility
+alias vi='vim'
 alias :e='vim'
 alias :q='exit'
 
 # virtualenv aliases
 alias mkvirtualenv='mkvirtualenv --no-site-packages'
 alias workoff='deactivate && cd'
+
+# Vagrant
+alias vgup='vagrant up'
+alias vgssh='vagrant ssh'
+alias vgprov='vagrant provision'
+alias vgreload='vagrant reload'
+alias vgdown='vagrant halt'
+alias vgdest='vagrant destroy'
