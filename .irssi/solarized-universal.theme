@@ -293,7 +293,7 @@ abstracts = {
   # default backround for "default" statusbar group
   # NOTE: this impacts the statusbar of an inactive window and the edges of adv_windowlist
   # %7 = white (wich looks gray on a regular terminal with white bg)
-  sb_default_bg = "%k%7";
+  sb_default_bg = "%k%4";
 
   # background for topicbar at the top (defaults to sb_default_bg)
   sb_topic_bg = "%W%0";
@@ -301,7 +301,7 @@ abstracts = {
   # background for the statusbar of active window. You can also give
   # the foreground color.
   # %2 = green
-  sb_window_bg = "%k%2";
+  sb_window_bg = "%k%4";
 
   # background for prompt / input line
   sb_prompt_bg = "%n";
@@ -329,7 +329,7 @@ abstracts = {
   sbmode = "%b(%n+$*%b)%n";
   sbaway = " (%GzZzZ%n)";
   # %Y = brightyellow (Solarized: base00, i.e. 2nd darkest gray)
-  sbservertag = ":$0 %b(change with ^X)%n";
+  sbservertag = ":$0 %k(change with ^X)%n";
   sbnickmode = "$0";
 
   # activity in statusbar
