@@ -364,6 +364,7 @@
   if count(s:settings.plugin_groups, 'ruby') "{{{
     NeoBundle 'tpope/vim-rails'
     NeoBundle 'tpope/vim-bundler'
+    NeoBundle 'tpope/vim-haml', {'autoload':{'filetypes':['haml','sass','scss']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'python') "{{{
     NeoBundleLazy 'klen/python-mode', {'autoload':{'filetypes':['python']}} "{{{
