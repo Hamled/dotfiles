@@ -365,6 +365,7 @@
     NeoBundle 'tpope/vim-rails'
     NeoBundle 'tpope/vim-bundler'
     NeoBundle 'tpope/vim-haml', {'autoload':{'filetypes':['haml','sass','scss']}}
+    NeoBundle 'astashov/vim-ruby-debugger'
   endif "}}}
   if count(s:settings.plugin_groups, 'python') "{{{
     NeoBundleLazy 'klen/python-mode', {'autoload':{'filetypes':['python']}} "{{{
