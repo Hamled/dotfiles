@@ -41,6 +41,7 @@
     call add(s:settings.plugin_groups, 'python')
     call add(s:settings.plugin_groups, 'scala')
     call add(s:settings.plugin_groups, 'go')
+    call add(s:settings.plugin_groups, 'clojure')
     call add(s:settings.plugin_groups, 'scm')
     call add(s:settings.plugin_groups, 'editing')
     call add(s:settings.plugin_groups, 'indents')
@@ -55,7 +56,7 @@
 
     " exclude all language-specific plugins by default
     if !exists('g:dotvim_settings.plugin_groups_exclude')
-      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala']
+      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure']
     endif
     for group in g:dotvim_settings.plugin_groups_exclude
       let i = index(s:settings.plugin_groups, group)
@@ -382,6 +383,11 @@
   if count(s:settings.plugin_groups, 'go') "{{{
     NeoBundleLazy 'jnwhiteh/vim-golang', {'autoload':{'filetypes':['go']}}
     NeoBundleLazy 'nsf/gocode', {'autoload': {'filetypes':['go']}, 'rtp': 'vim'}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'clojure') "{{{
+    NeoBundleLazy 'guns/vim-clojure-static', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundleLazy 'tpope/vim-fireplace', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundleLazy 'tpope/vim-classpath', {'autoload':{'filetypes':['clj','cljs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
