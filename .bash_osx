@@ -58,7 +58,7 @@ remote_mvim() {
   $(which mvim) "${options[@]}" "$remote_option" "$cmd" "${files[@]}"
 }
 
-alias mvim='remote_mvim --remote-silent'
+alias mvim='mvim --remote-silent'
 
 if [[ -n "$(which mvim)" ]]; then
   alias vim='mvim'
