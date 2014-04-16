@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Homebrew rbenv overrides
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Setup chruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 
 # Homebrew bash-completion
 if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
