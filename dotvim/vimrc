@@ -402,6 +402,7 @@
     NeoBundleLazy 'nsf/gocode', {'autoload': {'filetypes':['go']}, 'rtp': 'vim'}
   endif "}}}
   if count(s:settings.plugin_groups, 'clojure') "{{{
+    autocmd FileType clojure NeoCompleteLock
     NeoBundle 'guns/vim-clojure-static', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundle 'tpope/vim-fireplace', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundle 'tpope/vim-classpath', {'autoload':{'filetypes':['clj','cljs']}}
