@@ -463,7 +463,7 @@
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplete' "{{{
-      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
+      NeoBundle 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory=s:get_cache_dir('neocomplete')
       "}}}
