@@ -64,3 +64,12 @@ alias mvim='mvim --remote-silent'
 if [[ -n "$(which mvim)" ]] && [[ -z "$TMUX" ]]; then
   alias vim='mvim'
 fi
+
+# Open vim as new pane in tmux sessions
+tmux_vim() {
+  tmux split-window -hp 60 "vim $@"
+}
+
+if [[ -n "$TMUX" ]]; then
+  alias vim=tmux_vim
+fi
