@@ -12,6 +12,8 @@
     finish
   endif
 
+  let s:cache_dir = get(g:dotvim_settings, 'cache_dir', '~/.vim/.cache')
+
   if g:dotvim_settings.version != 1
     echom 'The version number in your shim does not match the distribution version.  Please consult the README changelog section.'
     finish
@@ -87,11 +89,20 @@
     set rtp+=~/.vim
   endif
   set rtp+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
   NeoBundleFetch 'Shougo/neobundle.vim'
 "}}}
 
 " functions {{{
+  function! s:get_cache_dir(suffix) "{{{
+    return resolve(expand(s:cache_dir . '/' . a:suffix))
+  endfunction "}}}
+  function! Source(begin, end) "{{{
+    let lines = getline(a:begin, a:end)
+    for line in lines
+      execute line
+    endfor
+  endfunction "}}}
   function! Preserve(command) "{{{
     " preparation: save last search, and cursor position.
     let _s=@/
@@ -158,6 +169,13 @@
     set shell=c:\windows\system32\cmd.exe
   endif
 
+  if $SHELL =~ '/fish$'
+    " VIM expects to be run from a POSIX shell.
+    set shell=sh
+  endif
+
+  set noshelltemp                                     "use pipes
+
   " whitespace
   set backspace=indent,eol,start                      "allow backspacing everything in insert mode
   set autoindent                                      "automatically indent to match adjacent lines
@@ -178,7 +196,6 @@
   set wildmenu                                        "show list for autocomplete
   set wildmode=list:full
   set wildignorecase
-  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store
 
   set splitbelow
   set splitright
@@ -206,18 +223,18 @@
     " persistent undo
     if exists('+undofile')
       set undofile
-      set undodir=~/.vim/.cache/undo
+      let &undodir = s:get_cache_dir('undo')
     endif
 
     " backups
     set backup
-    set backupdir=~/.vim/.cache/backup
+    let &backupdir = s:get_cache_dir('backup')
 
     " swap files
-    set directory=~/.vim/.cache/swap
+    let &directory = s:get_cache_dir('swap')
     set noswapfile
 
-    call EnsureExists('~/.vim/.cache')
+    call EnsureExists(s:cache_dir)
     call EnsureExists(&undodir)
     call EnsureExists(&backupdir)
     call EnsureExists(&directory)
@@ -405,7 +422,6 @@
       nnoremap <silent> <leader>gp :Git push<CR>
       nnoremap <silent> <leader>gw :Gwrite<CR>
       nnoremap <silent> <leader>gr :Gremove<CR>
-      autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
       autocmd BufReadPost fugitive://* set bufhidden=delete
     "}}}
     NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} "{{{
@@ -443,13 +459,13 @@
     if s:settings.autocomplete_method == 'neocomplete' "{{{
       NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
         let g:neocomplete#enable_at_startup=1
-        let g:neocomplete#data_directory='~/.vim/.cache/neocomplete'
+        let g:neocomplete#data_directory=s:get_cache_dir('neocomplete')
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplcache' "{{{
       NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert':1}} "{{{
         let g:neocomplcache_enable_at_startup=1
-        let g:neocomplcache_temporary_dir='~/.vim/.cache/neocomplcache'
+        let g:neocomplcache_temporary_dir=s:get_cache_dir('neocomplcache')
         let g:neocomplcache_enable_fuzzy_completion=1
       "}}}
     endif "}}}
@@ -505,9 +521,14 @@
       let g:ctrlp_show_hidden=0
       let g:ctrlp_follow_symlinks=1
       let g:ctrlp_max_files=20000
-      let g:ctrlp_cache_dir='~/.vim/.cache/ctrlp'
+      let g:ctrlp_cache_dir=s:get_cache_dir('ctrlp')
       let g:ctrlp_reuse_window='startify'
       let g:ctrlp_extensions=['funky']
+      let g:ctrlp_custom_ignore = {
+            \ 'dir': '\v[\/]\.(git|hg|svn|idea)$',
+            \ 'file': '\v\.DS_Store$'
+            \ }
+
       if executable('ag')
         let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
       endif
@@ -528,7 +549,7 @@
       let NERDTreeChDirMode=0
       let NERDTreeShowBookmarks=1
       let NERDTreeIgnore=['\.git','\.hg']
-      let NERDTreeBookmarksFile='~/.vim/.cache/NERDTreeBookmarks'
+      let NERDTreeBookmarksFile=s:get_cache_dir('NERDTreeBookmarks')
       nnoremap <F2> :NERDTreeToggle<CR>
       nnoremap <F3> :NERDTreeFind<CR>
     "}}}
@@ -542,19 +563,20 @@
       function! bundle.hooks.on_source(bundle)
         call unite#filters#matcher_default#use(['matcher_fuzzy'])
         call unite#filters#sorter_default#use(['sorter_rank'])
-        call unite#set_profile('files', 'smartcase', 1)
         call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+        call unite#custom#profile('default', 'context', {
+              \ 'start_insert': 1,
+              \ 'direction': 'botright',
+              \ })
       endfunction
 
-      let g:unite_data_directory='~/.vim/.cache/unite'
-      let g:unite_enable_start_insert=1
+      let g:unite_data_directory=s:get_cache_dir('unite')
       let g:unite_source_history_yank_enable=1
       let g:unite_source_rec_max_cache_files=5000
-      let g:unite_prompt='» '
 
       if executable('ag')
         let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+        let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
         let g:unite_source_grep_recursive_opt=''
       elseif executable('ack')
         let g:unite_source_grep_command='ack'
@@ -604,7 +626,7 @@
       nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
     "}}}
     NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen','unite_sources':['junkfile','junkfile/new']}} "{{{
-      let g:junkfile#directory=expand("~/.vim/.cache/junk")
+      let g:junkfile#directory=s:get_cache_dir('junk')
       nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
     "}}}
   endif "}}}
@@ -645,7 +667,7 @@
     NeoBundle 'vimwiki'
     NeoBundle 'bufkill.vim'
     NeoBundle 'mhinz/vim-startify' "{{{
-      let g:startify_session_dir = '~/.vim/.cache/sessions'
+      let g:startify_session_dir = s:get_cache_dir('sessions')
       let g:startify_change_to_vcs_root = 1
       let g:startify_show_sessions = 1
       nnoremap <F1> :Startify<cr>
@@ -667,7 +689,7 @@
         let g:vimshell_editor_command='vim'
       endif
       let g:vimshell_right_prompt='getcwd()'
-      let g:vimshell_data_directory='~/.vim/.cache/vimshell'
+      let g:vimshell_data_directory=s:get_cache_dir('vimshell')
       let g:vimshell_vimshrc_path='~/.vim/vimshrc'
 
       nnoremap <leader>c :VimShell -split<cr>
@@ -681,6 +703,7 @@
       let g:goldenview__enable_default_mapping=0
       nmap <F4> <Plug>ToggleGoldenViewAutoResize
     "}}}
+    NeoBundleLazy 'gregsexton/VimCalc'
   endif "}}}
   if count(s:settings.plugin_groups, 'windows') "{{{
     NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}} "{{{
@@ -697,6 +720,10 @@
   nmap <leader>fef :call Preserve("normal gg=G")<CR>
   nmap <leader>f$ :call StripTrailingWhitespace()<CR>
   vmap <leader>s :sort<cr>
+
+  " eval vimscript by line or visual selection
+  nmap <silent> <leader>e :call Source(line('.'), line('.'))<CR>
+  vmap <silent> <leader>e :call Source(line('v'), line('.'))<CR>
 
   nnoremap <leader>w :w<cr>
 
@@ -852,8 +879,6 @@
   NeoBundle 'zeis/vim-kolor' "{{{
     let g:kolor_underlined=1
   "}}}
-
-  exec 'colorscheme '.s:settings.colorscheme
 "}}}
 
 " finish loading {{{
@@ -863,7 +888,10 @@
     endfor
   endif
 
+  call neobundle#end()
   filetype plugin indent on
   syntax enable
+  exec 'colorscheme '.s:settings.colorscheme
+
   NeoBundleCheck
 "}}}
