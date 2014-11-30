@@ -60,6 +60,7 @@ remote_mvim() {
 
 alias mvim='mvim --remote-silent'
 
-if [[ -n "$(which mvim)" ]]; then
+# Only use macvim when not running in tmux
+if [[ -n "$(which mvim)" ]] && [[ -z "$TMUX" ]]; then
   alias vim='mvim'
 fi
