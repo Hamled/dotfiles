@@ -409,6 +409,7 @@
     NeoBundleLazy 'tpope/vim-sexp-mappings-for-regular-people', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundleLazy 'amdt/vim-niji', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundleLazy 'guns/vim-slamhound', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundleLazy 'guns/vim-clojure-highlight', {'autoload':{'filetypes':['clj','cljs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
