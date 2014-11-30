@@ -405,6 +405,8 @@
     NeoBundleLazy 'guns/vim-clojure-static', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundleLazy 'tpope/vim-fireplace', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundleLazy 'tpope/vim-classpath', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundleLazy 'vim-scripts/paredit.vim', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundleLazy 'kien/rainbow_parentheses.vim', {'autoload':{'filetypes':['clj','cljs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
