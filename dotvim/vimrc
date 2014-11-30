@@ -402,14 +402,14 @@
     NeoBundleLazy 'nsf/gocode', {'autoload': {'filetypes':['go']}, 'rtp': 'vim'}
   endif "}}}
   if count(s:settings.plugin_groups, 'clojure') "{{{
-    NeoBundleLazy 'guns/vim-clojure-static', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'tpope/vim-fireplace', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'tpope/vim-classpath', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'guns/vim-sexp', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'tpope/vim-sexp-mappings-for-regular-people', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'amdt/vim-niji', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'guns/vim-slamhound', {'autoload':{'filetypes':['clj','cljs']}}
-    NeoBundleLazy 'guns/vim-clojure-highlight', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'guns/vim-clojure-static', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'tpope/vim-fireplace', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'tpope/vim-classpath', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'guns/vim-sexp', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'tpope/vim-sexp-mappings-for-regular-people', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'amdt/vim-niji', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'guns/vim-slamhound', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'guns/vim-clojure-highlight', {'autoload':{'filetypes':['clj','cljs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
