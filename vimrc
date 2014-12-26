@@ -411,6 +411,7 @@
     NeoBundle 'amdt/vim-niji', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundle 'guns/vim-slamhound', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundle 'guns/vim-clojure-highlight', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'jebberjeb/grimoire.vim', {'autoload':{'filetypes':['clj','cljs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
@@ -463,7 +464,7 @@
       "}}}
     endif "}}}
     if s:settings.autocomplete_method == 'neocomplete' "{{{
-      NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
+      NeoBundle 'Shougo/neocomplete.vim', {'autoload':{'insert':1}, 'vim_version':'7.3.885'} "{{{
         let g:neocomplete#enable_at_startup=1
         let g:neocomplete#data_directory=s:get_cache_dir('neocomplete')
       "}}}
