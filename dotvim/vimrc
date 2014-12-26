@@ -411,6 +411,7 @@
     NeoBundle 'amdt/vim-niji', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundle 'guns/vim-slamhound', {'autoload':{'filetypes':['clj','cljs']}}
     NeoBundle 'guns/vim-clojure-highlight', {'autoload':{'filetypes':['clj','cljs']}}
+    NeoBundle 'jebberjeb/grimoire.vim', {'autoload':{'filetypes':['clj','cljs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'scm') "{{{
     NeoBundle 'mhinz/vim-signify' "{{{
