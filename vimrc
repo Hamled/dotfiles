@@ -720,7 +720,9 @@
     NeoBundleLazy 'nosami/Omnisharp', {'autoload':{'filetypes':['cs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'cpp') "{{{
-    NeoBundleLazy 'Rip-Rip/clang_complete', {'autoload':{'filetypes':['c','cpp','cxx','h','hpp','hxx']}} "{{{
+    NeoBundleLazy 'Rip-Rip/clang_complete', "{{{
+      {'autoload':{'filetypes':['c','cpp','cxx','h','hpp','hxx']},
+       'build':{'mac':'make install','linux':'make install'}}
       if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
       endif
@@ -738,7 +740,6 @@
 
   nnoremap <leader>nbu :Unite neobundle/update -vertical -no-start-insert<cr>
 "}}}
-
 
 " mappings {{{
   " formatting shortcuts
