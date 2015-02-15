@@ -55,10 +55,11 @@
     if s:is_windows
       call add(s:settings.plugin_groups, 'windows')
     endif
+    call add(s:settings.plugin_groups, 'cpp')
 
     " exclude all language-specific plugins by default
     if !exists('g:dotvim_settings.plugin_groups_exclude')
-      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure']
+      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure','cpp']
     endif
     for group in g:dotvim_settings.plugin_groups_exclude
       let i = index(s:settings.plugin_groups, group)
@@ -718,9 +719,26 @@
     "}}}
     NeoBundleLazy 'nosami/Omnisharp', {'autoload':{'filetypes':['cs']}}
   endif "}}}
+  if count(s:settings.plugin_groups, 'cpp') "{{{
+    NeoBundleLazy 'Rip-Rip/clang_complete', {'autoload':{'filetypes':['c','cpp','cxx','h','hpp','hxx']}} "{{{
+      if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+      endif
+      let g:neocomplete#force_overwrite_completefunc = 1
+      let g:neocomplete#force_omni_input_patterns.c =
+            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+      let g:neocomplete#force_omni_input_patterns.cpp =
+            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+      let g:clang_complete_auto = 0
+      let g:clang_auto_select = 0
+      let g:clang_use_library = 1
+    "}}}
+    NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', {'autoload':{'filetypes':['c','cpp','cxx','h','hpp','hxx']}}
+  endif "}}}
 
   nnoremap <leader>nbu :Unite neobundle/update -vertical -no-start-insert<cr>
 "}}}
+
 
 " mappings {{{
   " formatting shortcuts
