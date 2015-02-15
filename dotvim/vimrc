@@ -480,7 +480,7 @@
   endif "}}}
   if count(s:settings.plugin_groups, 'editing') "{{{
     NeoBundleLazy 'editorconfig/editorconfig-vim', {'autoload':{'insert':1}}
-    NeoBundle 'tpope/vim-endwise'
+    NeoBundle 'tpope/vim-endwise', {'autoload':{'filetypes':['ruby']}}
     NeoBundle 'tpope/vim-speeddating'
     NeoBundle 'thinca/vim-visualstar'
     NeoBundle 'tomtom/tcomment_vim'
