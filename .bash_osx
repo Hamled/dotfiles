@@ -84,3 +84,6 @@ tmux_vim() {
 if [[ -n "$TMUX" ]]; then
   alias vim=tmux_vim
 fi
+
+# OPAM configuration
+source ~/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
