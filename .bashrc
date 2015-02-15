@@ -29,10 +29,6 @@ stty stop undef
 export LANG='en_US.UTF-8'
 export LC_TIME='en_US.UTF-8'
 
-if test -t 1 -a -t 2; then
-    echo -n -e '\033%G'
-fi
-
 # Use vim mode
 set -o vi
 
