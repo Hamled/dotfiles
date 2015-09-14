@@ -56,10 +56,11 @@
       call add(s:settings.plugin_groups, 'windows')
     endif
     call add(s:settings.plugin_groups, 'cpp')
+    call add(s:settings.plugin_groups, 'elixir')
 
     " exclude all language-specific plugins by default
     if !exists('g:dotvim_settings.plugin_groups_exclude')
-      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure','cpp']
+      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure','cpp','elixir']
     endif
     for group in g:dotvim_settings.plugin_groups_exclude
       let i = index(s:settings.plugin_groups, group)
@@ -746,6 +747,10 @@
         let g:clang_complete_macros = 1
       "}}}
     NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', {'autoload':{'filetypes':['c','cpp']}}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'elixir') "{{{
+    NeoBundleLazy 'elixir-lang/vim-elixir', {'autoload':{'filetypes':['elixir']}}
+    NeoBundleLazy 'mattreduce/vim-mix', {'autoload':{'filetypes':['elixir']}}
   endif "}}}
 
   nnoremap <leader>nbu :Unite neobundle/update -vertical -no-start-insert<cr>
