@@ -9,6 +9,9 @@ if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
+# Racket
+export PATH=$PATH:~/Applications/Racket\ v6.1.1/bin
+
 # Coreutils Overrides
 # enable color support of ls and also add handy aliases
 if [[ "$TERM" != "dumb" ]]; then
