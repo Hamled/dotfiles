@@ -6,7 +6,10 @@
 [github]
 	user = Hamled
 [alias]
+  c = commit
+  b = branch
 	co = checkout
+  ls = status
 [push]
 	default = simple
 [credential]
