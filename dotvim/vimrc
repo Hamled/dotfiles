@@ -57,10 +57,11 @@
     endif
     call add(s:settings.plugin_groups, 'cpp')
     call add(s:settings.plugin_groups, 'elixir')
+    call add(s:settings.plugin_groups, 'csharp')
 
     " exclude all language-specific plugins by default
     if !exists('g:dotvim_settings.plugin_groups_exclude')
-      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure','cpp','elixir']
+      let g:dotvim_settings.plugin_groups_exclude = ['web','javascript','ruby','python','go','scala','clojure','cpp','elixir','csharp']
     endif
     for group in g:dotvim_settings.plugin_groups_exclude
       let i = index(s:settings.plugin_groups, group)
@@ -361,11 +362,10 @@
     NeoBundleLazy 'gregsexton/MatchTag', {'autoload':{'filetypes':['html','xml']}}
     NeoBundleLazy 'mattn/emmet-vim', {'autoload':{'filetypes':['html','xml','xsl','xslt','xsd','css','sass','scss','less','mustache','handlebars']}} "{{{
       function! s:zen_html_tab()
-        let line = getline('.')
-        if match(line, '<.*>') < 0
-          return "\<c-y>,"
+        if !emmet#isExpandable()
+          return "\<plug>(emmet-move-next)"
         endif
-        return "\<c-y>n"
+        return "\<plug>(emmet-expand-abbr)"
       endfunction
       autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
       autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
@@ -726,7 +726,6 @@
     NeoBundleLazy 'PProvost/vim-ps1', {'autoload':{'filetypes':['ps1']}} "{{{
       autocmd BufNewFile,BufRead *.ps1,*.psd1,*.psm1 setlocal ft=ps1
     "}}}
-    NeoBundleLazy 'nosami/Omnisharp', {'autoload':{'filetypes':['cs']}}
   endif "}}}
   if count(s:settings.plugin_groups, 'cpp') "{{{
     NeoBundleLazy 'Rip-Rip/clang_complete', {
@@ -751,6 +750,9 @@
   if count(s:settings.plugin_groups, 'elixir') "{{{
     NeoBundleLazy 'elixir-lang/vim-elixir', {'autoload':{'filetypes':['elixir']}}
     NeoBundleLazy 'mattreduce/vim-mix', {'autoload':{'filetypes':['elixir']}}
+  endif "}}}
+  if count(s:settings.plugin_groups, 'csharp') "{{{
+    NeoBundleLazy 'OmniSharp/omnisharp-vim', {'autoload':{'filetypes':['cs']}}
   endif "}}}
 
   nnoremap <leader>nbu :Unite neobundle/update -vertical -no-start-insert<cr>
