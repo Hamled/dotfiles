@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:Hamled/dotnvim.git
+	branch = master
+	commit = c6e884a5d11a9d82e9848f3aa45ca2a2a0251f72
+	parent = b444b7435d348506ac76958bbaf734ee644744c1
+	cmdver = 0.3.0
