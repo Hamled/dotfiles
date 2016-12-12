@@ -6,10 +6,11 @@
 [github]
 	user = Hamled
 [alias]
-  c = commit
-  b = branch
+	c = commit
+	b = branch
 	co = checkout
-  ls = status
+	ls = status
+	diffs = diff --staged
 [push]
 	default = simple
 [credential]
