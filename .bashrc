@@ -141,4 +141,5 @@ tmux_editor() {
 
 if [[ -n "$TMUX" ]]; then
   vim() { tmux_editor "vim" "$@"; }
+  nvim() { tmux_editor "nvim" "$@"; }
 fi
