@@ -12,6 +12,7 @@ autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
 autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 autocmd FileType python setlocal foldmethod=indent
 autocmd FileType python nnoremap <Leader>8 :PyLint<CR>
+autocmd BufNewFile,BufRead *.bfg setlocal filetype=python
 autocmd FileType markdown setlocal nolist
 autocmd FileType vim setlocal fdm=indent keywordprg=:help
 
