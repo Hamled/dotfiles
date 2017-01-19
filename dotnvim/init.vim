@@ -15,6 +15,7 @@ autocmd FileType python nnoremap <Leader>8 :PyLint<CR>
 autocmd BufNewFile,BufRead *.bfg setlocal filetype=python
 autocmd FileType markdown setlocal nolist
 autocmd FileType vim setlocal fdm=indent keywordprg=:help
+autocmd FileType crontab setlocal backupcopy=yes " necessary for crontab -e to work
 
 " Airline config
 let g:airline_theme='molokai'
