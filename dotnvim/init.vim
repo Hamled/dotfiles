@@ -48,6 +48,6 @@ autocmd BufReadPost *
   \ endif
 
 " If we have local configuration, use it
-if filereadable($VIMRUNTIME . "/local.vim")
+if !empty(filter(split(&rtp, ','), 'filereadable(v:val . "/local.vim")'))
   runtime local.vim
 endif

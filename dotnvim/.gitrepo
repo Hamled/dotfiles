@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:Hamled/dotnvim.git
 	branch = master
-	commit = a4d72b4c2412114a15679b875d6f2d72ab09c685
-	parent = 3e06abd87c7b3648a6ed9d012f54aaa72f0663eb
+	commit = 5824105f50c709124840e8e761d8820d44e12567
+	parent = ed6a71211b77f4be1e1a25e1b263bcba2ff25594
 	cmdver = 0.3.0
