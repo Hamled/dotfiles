@@ -1,1 +1,1 @@
-call dein#add('zchee/deoplete-clang')
+call dein#add('tweekmonster/deoplete-clang2')
