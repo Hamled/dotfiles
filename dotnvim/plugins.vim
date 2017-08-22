@@ -12,6 +12,7 @@ endif
 
 call dein#add('tomasr/molokai')
 call dein#add('mhinz/vim-startify')
+call dein#add('dietsche/vim-lastplace')
 
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
@@ -27,6 +28,8 @@ call dein#add('Shougo/deoplete.nvim')
 
 " Language-specific plugins
 runtime plugins/cpp.vim
+runtime plugins/typescript.vim
+runtime plugins/rust.vim
 
 " Finish dein
 call dein#end()
