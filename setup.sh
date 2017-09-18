@@ -9,3 +9,8 @@ git submodule init && git submodule update # .gitmodules should be kept current
 
 # Setup terminfo
 tic terminfo/screen-256color.ti
+
+# Setup Tmux Plugin Manager
+pushd ~
+ln -s projects/dotfiles/.tmux
+popd
