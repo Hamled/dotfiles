@@ -33,6 +33,7 @@ set -o vi
 
 # Python virtualenv and virtualenvwrapper config
 if [ -x /usr/local/bin/virtualenvwrapper.sh ] ; then
+    export VIRTUALENVWRAPPER_PYTHON=`which python2`
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/projects/python
     source /usr/local/bin/virtualenvwrapper.sh
