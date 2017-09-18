@@ -1,5 +1,7 @@
 # ~/.profile: executed by the command interpreter for login shells.
 
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+
 # set the default editor
 export EDITOR=vim
 export VISUAL=vim

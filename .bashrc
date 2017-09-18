@@ -4,7 +4,6 @@
 [ -z "$PS1" ] && return
 
 # setup the PATH
-PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
