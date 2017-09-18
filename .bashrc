@@ -143,3 +143,8 @@ if [[ -n "$TMUX" ]]; then
   vim() { tmux_editor "vim" "$@"; }
   nvim() { tmux_editor "nvim" "$@"; }
 fi
+
+# Setup git-subrepo
+if [ -r ~/src/git-subrepo/.rc ]; then
+  source ~/src/git-subrepo/.rc
+fi
