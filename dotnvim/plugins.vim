@@ -13,6 +13,7 @@ endif
 call dein#add('tomasr/molokai')
 call dein#add('mhinz/vim-startify')
 call dein#add('dietsche/vim-lastplace')
+call dein#add('tpope/vim-obsession')
 
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
