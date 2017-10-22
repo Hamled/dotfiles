@@ -123,27 +123,6 @@ unset color_prompt force_color_prompt
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
-# Open editor as new pane in tmux sessions
-tmux_editor() {
-  # Figure out the best split to use
-  local vim_width=126 # Enough room for 120 colums + line nums + scm indicators
-  local min_term_width=60 # Just a guess
-
-  # We'll use a vertical split if the term isn't wide enough
-  if [[ $(( `tput cols` - vim_width )) -ge $min_term_width ]]; then
-    local split_param="-hl $vim_width"
-  else
-    local split_param='-vp 80' # Give vim 80% of the screen
-  fi
-
-  tmux split-window "$split_param" "$(printf '%q ' "$@")"
-}
-
-if [[ -n "$TMUX" ]]; then
-  vim() { tmux_editor "vim" "$@"; }
-  nvim() { tmux_editor "nvim" "$@"; }
-fi
-
 # Setup git-subrepo
 if [ -r ~/src/git-subrepo/.rc ]; then
   source ~/src/git-subrepo/.rc
