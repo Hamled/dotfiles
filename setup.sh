@@ -19,4 +19,10 @@ pushd ~
 ln -s "$DOTFILES/.tmux"
 popd
 
+# Setup git
+pushd ~
+ln -s "$DOTFILES/.gitconfig"
+ln -s "$DOTFILES/.gitignore_global"
+popd
+
 # TODO: Setup other dotfiles automatically
