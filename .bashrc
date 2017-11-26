@@ -119,9 +119,19 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# Setup chruby
+# Setup chruby && chnode
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
+source /usr/local/bin/chnode
+source /usr/local/bin/chnode-auto
+trap DEBUG
+
+chlang() {
+  chruby_auto
+  chnode-auto "$_"
+}
+
+trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chlang' DEBUG
 
 # Setup git-subrepo
 if [ -r ~/src/git-subrepo/.rc ]; then
