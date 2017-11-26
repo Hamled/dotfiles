@@ -31,6 +31,7 @@ call dein#add('Shougo/deoplete.nvim')
 runtime plugins/cpp.vim
 runtime plugins/typescript.vim
 runtime plugins/rust.vim
+runtime plugins/crystal.vim
 
 " Finish dein
 call dein#end()
